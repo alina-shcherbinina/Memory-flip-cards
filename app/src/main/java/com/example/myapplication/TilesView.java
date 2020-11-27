@@ -21,17 +21,18 @@ class Card {
     Paint p = new Paint();
     int outline = 10;
 
-    public Card(int color) {
-        this.color = color;
-    }
-
     public void CardProperties(float x, float y, float width, float height) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+
     }
 
+    public Card(int color) {
+        this.color = color;
+    }
+    
     int color, backColor = Color.DKGRAY, solved = Color.WHITE;
     boolean isOpen = false; // цвет карты
     float x, y, width, height;
@@ -54,7 +55,7 @@ class Card {
 
 public class TilesView extends View {
 
-    int row = 4, col = 4;
+    int row = 4, col = 3;
 
     // пауза для запоминания карт
     final int PAUSE_LENGTH = 2; // в секундах
@@ -71,8 +72,7 @@ public class TilesView extends View {
     ArrayList<Integer> colors = new ArrayList<Integer>(Arrays.asList(
             Color.rgb(192,192,192), Color.rgb(0,128,0),
             Color.rgb(128,0,128), Color.rgb(0,128,128),
-            Color.rgb(255,0,255), Color.rgb(0,0,255),
-            Color.rgb(160,82,45), Color.rgb(255, 175, 175)
+            Color.rgb(255,0,255), Color.rgb(0,0,255)
     ));
 
 
@@ -142,7 +142,6 @@ public class TilesView extends View {
                         if (cards[i][j].flip(x, y)) {
 
                             openedCard++;
-                            Log.d("mytag", "card flipped: " + openedCard + " - " + cards[i][j]);
                             openedCards[0] = cards[i][j];
                             invalidate();
                             return true;
@@ -154,10 +153,7 @@ public class TilesView extends View {
                         if (cards[i][j].flip(x, y)) {
                             openedCard++;
                             // 4 если открылись карты одинакового цвета, удалить их из списка
-                            //Log.d("mytag", "card flipped: " + openedCard + " - " + cards[i][j]);
                             openedCards[1] = cards[i][j];
-                            Log.d("mytag", "card : " + " - " + openedCards[0].color);
-                            Log.d("mytag", "card : " + " - " + openedCards[1].color);
 
                             if (openedCards[0].color == openedCards[1].color) {
 
