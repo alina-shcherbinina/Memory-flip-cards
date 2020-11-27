@@ -69,10 +69,10 @@ public class TilesView extends View {
     Card[][] cards = new Card[row][col];
 
     ArrayList<Integer> colors = new ArrayList<Integer>(Arrays.asList(
-            Color.YELLOW, Color.GREEN,
-            Color.BLUE, Color.BLACK,
-            Color.MAGENTA, Color.CYAN,
-            Color.RED, Color.rgb(255, 175, 175)
+            Color.rgb(192,192,192), Color.rgb(0,128,0),
+            Color.rgb(128,0,128), Color.rgb(0,128,128),
+            Color.rgb(255,0,255), Color.rgb(0,0,255),
+            Color.rgb(160,82,45), Color.rgb(255, 175, 175)
     ));
 
 
@@ -109,16 +109,16 @@ public class TilesView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        int t_height = canvas.getHeight() / row;
-        int t_width = canvas.getWidth() / col; // like color tiles
+        int card_height = canvas.getHeight() / row;
+        int card_width = canvas.getWidth() / col; // like color tiles
 
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
 
-                int left = j * t_width;
-                int top = i * t_height;
+                int left = j * card_width;
+                int top = i * card_height;
 
-                cards[i][j].CardProperties(left, top, t_width, t_height);
+                cards[i][j].CardProperties(left, top, card_width, card_height);
                 cards[i][j].draw(canvas);
 
             }
@@ -160,9 +160,6 @@ public class TilesView extends View {
                             Log.d("mytag", "card : " + " - " + openedCards[1].color);
 
                             if (openedCards[0].color == openedCards[1].color) {
-
-                                openedCards[0].backColor = openedCards[0].color;
-                                openedCards[1].backColor = openedCards[1].color;
 
                                 Toast toast = Toast.makeText(getContext(), "Same card!", Toast.LENGTH_SHORT);
                                 toast.show();
